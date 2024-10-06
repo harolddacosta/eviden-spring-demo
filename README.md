@@ -1,7 +1,7 @@
 # Herramientas y dependencias del `pom.xml`
 
 ## Base de datos
-- Este proyecto contiene aprox. 42k registros de productos aleatorios y 50k de registro de ordenes, que se crean al momento de iniciar el proyecto por primera vez con flyway.
+- Este proyecto contiene aprox. **42k registros de productos** aleatorios y **50k de registro de ordenes**, que se crean al momento de iniciar el proyecto por primera vez con flyway.
 - Crear una BD con los siguientes parametros:
 
 ```
