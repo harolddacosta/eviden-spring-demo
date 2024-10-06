@@ -20,7 +20,7 @@ Para ejecutar el proyecto con:
 
 Se puede luego visualizar el swagger en la direccion
 
-[Link]http://localhost:8080/swagger-ui/index.html
+[Link]http://localhost:9090/swagger-ui/index.html
 
 ## Herramientas y dependencias clave
 
