@@ -18,6 +18,10 @@ Para ejecutar el proyecto con:
 #> ./mvnw spring-boot:run -Dspring-boot.run.profiles=local
 ```
 
+Se puede luego visualizar el swagger en la direccion
+
+[Link]http://localhost:8080/swagger-ui/index.html
+
 ## Herramientas y dependencias clave
 
 ### 1. **Spring Boot**
