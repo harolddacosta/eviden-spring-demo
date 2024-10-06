@@ -10,6 +10,14 @@ ENV_DATABASE_USERNAME=demo
 ENV_DATABASE_PASSWORD=demo
 ```
 
+## Ejecutar
+
+Para ejecutar el proyecto con:
+
+```shell
+#> ./mvnw spring-boot:run -Dspring-boot.run.profiles=local
+```
+
 ## Herramientas y dependencias clave
 
 ### 1. **Spring Boot**
