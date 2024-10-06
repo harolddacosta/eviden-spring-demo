@@ -1,0 +1,24 @@
+security:
+  - jwt: []
+  - ApiKeyAuth: []
+
+components:
+  schemas:
+    PaginationResponse:
+      title: Pagination
+      type: object
+      properties:
+        current_page:
+          type: integer
+        page_size:
+          type: integer
+        total_pages:
+          type: integer
+        page_elements:
+          type: integer
+        total_elements:
+          type: integer
+          format: int64
+        is_last_page:
+          type: boolean
+      description: Pagination object. It contains all related to pagination attributes.

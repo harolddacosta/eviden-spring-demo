@@ -1,0 +1,86 @@
+{
+  "type": "record",
+  "namespace": "com.eviden.demo.domain.avro",
+  "name": "PurchaseOrderAvro",
+  "fields": [
+    {
+      "name": "purchaseOrderId",
+      "type": "string"
+    },
+    {
+      "name": "customerId",
+      "type": "string"
+    },
+    {
+      "name": "purchaseOrderDate",
+      "type": "string"
+    },
+    {
+      "name": "status",
+      "type": "string"
+    },
+    {
+      "name": "items",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "namespace": "com.eviden.demo.domain.avro",
+          "name": "PurchaseOrderItemAvro",
+          "fields": [
+            {
+              "name": "productId",
+              "type": "string"
+            },
+            {
+              "name": "productName",
+              "type": "string"
+            },
+            {
+              "name": "quantity",
+              "type": "long"
+            },
+            {
+              "name": "unitPrice",
+              "type": "double"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "totalAmount",
+      "type": "double"
+    },
+    {
+      "name": "shippingAddress",
+      "type": {
+        "type": "record",
+        "namespace": "com.eviden.demo.domain.avro",
+        "name": "ShippingAddressAvro",
+        "fields": [
+          {
+            "name": "street",
+            "type": "string"
+          },
+          {
+            "name": "city",
+            "type": "string"
+          },
+          {
+            "name": "state",
+            "type": "string"
+          },
+          {
+            "name": "zipCode",
+            "type": "string"
+          },
+          {
+            "name": "country",
+            "type": "string"
+          }
+        ]
+      }
+    }
+  ]
+}

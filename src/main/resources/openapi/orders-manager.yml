@@ -1,0 +1,270 @@
+openapi: 3.0.1
+info:
+  title: API de Pedidos
+  description: API para gestionar pedidos en el sistema.
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+    description: Servidor local
+
+paths:
+  /orders:
+    post:
+      summary: Crear un nuevo pedido
+      operationId: createOrder
+      requestBody:
+        description: Datos del pedido a crear
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PurchaseOrderPostRequest'
+      responses:
+        '201':
+          description: Pedido creado exitosamente
+        '400':
+          description: Datos inválidos
+
+    get:
+      summary: Listar todos los pedidos
+      operationId: listOrders
+      parameters: [
+        {
+          name: page,
+          in: query,
+          description: Zero-based page index (0..N),
+          required: false,
+          schema: {
+            minimum: 0,
+            type: integer,
+            default: 0
+          }
+        },
+        {
+          name: size,
+          in: query,
+          description: The size of the page to be returned,
+          required: false,
+          schema: {
+            minimum: 1,
+            type: integer,
+            default: 20
+          }
+        }
+      ]
+      responses:
+        '200':
+          description: Lista de pedidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PurchaseOrdersResponse'
+        '500':
+          description: Error interno del servidor
+
+  /orders/{id}:
+    get:
+      summary: Devolver un pedido por ID
+      operationId: getOrder
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del pedido a devolver
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Pedido solicitado
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/PurchaseOrderResponse'
+        '404':
+          description: Pedido no encontrado
+    delete:
+      summary: cancelar un pedido por ID
+      operationId: cancelPurchaseOrder
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del pedido a eliminar
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Pedido cancelado exitosamente
+        '404':
+          description: Pedido no encontrado
+
+components:
+  schemas:
+    PurchaseOrdersResponse:
+      title: Example response with pagination
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/PurchaseOrderResponse'
+        pagination:
+          $ref: './commons.yml#/components/schemas/PaginationResponse'
+    PurchaseOrderResponse:
+      type: object
+      properties:
+        purchaseOrderId:
+          type: string
+          description: ID del pedido
+          example: "ORD-001"
+        customerId:
+          type: string
+          description: ID del cliente que realizó el pedido
+          example: "CUST-1001"
+        purchaseOrderDate:
+          type: string
+          format: date-time
+          description: Fecha y hora en que se realizó el pedido
+          example: "2023-06-01T10:30:00Z"
+        status:
+          type: string
+          description: Estado del pedido
+          example: "COMPLETED"
+        items:
+          type: array
+          description: Lista de productos en el pedido
+          items:
+            $ref: '#/components/schemas/PurchaseOrderItemResponse'
+        totalAmount:
+          type: number
+          format: double
+          description: Monto total del pedido
+          example: 1329.97
+        shippingAddress:
+          $ref: '#/components/schemas/ShippingAddressResponse'
+
+    PurchaseOrderItemResponse:
+      type: object
+      properties:
+        productId:
+          type: string
+          description: ID del producto
+          example: "PROD-A101"
+        productName:
+          type: string
+          description: Nombre del producto
+          example: "Smartphone X1"
+        quantity:
+          type: integer
+          description: Cantidad del producto solicitado
+          example: 2
+        unitPrice:
+          type: number
+          format: double
+          description: Precio unitario del producto
+          example: 599.99
+
+    ShippingAddressResponse:
+      type: object
+      properties:
+        street:
+          type: string
+          description: Calle y número de la dirección de envío
+          example: "123 Main St"
+        city:
+          type: string
+          description: Ciudad de la dirección de envío
+          example: "Springfield"
+        state:
+          type: string
+          description: Estado o región de la dirección de envío
+          example: "IL"
+        zipCode:
+          type: string
+          description: Código postal de la dirección de envío
+          example: "62701"
+        country:
+          type: string
+          description: País de la dirección de envío
+          example: "USA"
+
+    PurchaseOrderPostRequest:
+      type: object
+      properties:
+        purchaseOrderId:
+          type: string
+          description: ID del pedido
+          example: "ORD-001"
+        customerId:
+          type: string
+          description: ID del cliente que realizó el pedido
+          example: "CUST-1001"
+        purchaseOrderDate:
+          type: string
+          format: date-time
+          description: Fecha y hora en que se realizó el pedido
+          example: "2023-06-01T10:30:00Z"
+        status:
+          type: string
+          description: Estado del pedido
+          example: "COMPLETED"
+        items:
+          type: array
+          description: Lista de productos en el pedido
+          items:
+            $ref: '#/components/schemas/PurchaseOrderItemPostRequest'
+        totalAmount:
+          type: number
+          format: double
+          description: Monto total del pedido
+          example: 1329.97
+        shippingAddress:
+          $ref: '#/components/schemas/ShippingAddressPostRequest'
+  
+    PurchaseOrderItemPostRequest:
+      type: object
+      properties:
+        productId:
+          type: string
+          description: ID del producto
+          example: "PROD-A101"
+        productName:
+          type: string
+          description: Nombre del producto
+          example: "Smartphone X1"
+        quantity:
+          type: integer
+          description: Cantidad del producto solicitado
+          example: 2
+        unitPrice:
+          type: number
+          format: double
+          description: Precio unitario del producto
+          example: 599.99
+  
+    ShippingAddressPostRequest:
+      type: object
+      properties:
+        street:
+          type: string
+          description: Calle y número de la dirección de envío
+          example: "123 Main St"
+        city:
+          type: string
+          description: Ciudad de la dirección de envío
+          example: "Springfield"
+        state:
+          type: string
+          description: Estado o región de la dirección de envío
+          example: "IL"
+        zipCode:
+          type: string
+          description: Código postal de la dirección de envío
+          example: "62701"
+        country:
+          type: string
+          description: País de la dirección de envío
+          example: "USA"
+                
+                
