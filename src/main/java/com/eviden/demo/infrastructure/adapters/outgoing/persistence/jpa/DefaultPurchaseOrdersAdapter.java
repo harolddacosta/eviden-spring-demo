@@ -6,7 +6,6 @@ import com.eviden.demo.domain.model.PurchaseOrder;
 import com.eviden.demo.infrastructure.adapters.outgoing.persistence.jpa.entities.PurchaseOrderEntity;
 import com.eviden.demo.infrastructure.adapters.outgoing.persistence.jpa.mappers.PurchaseOrderEntityMapper;
 import com.eviden.demo.infrastructure.adapters.outgoing.persistence.jpa.repositories.ProductJpaRepository;
-import com.eviden.demo.infrastructure.adapters.outgoing.persistence.jpa.repositories.PurchaseOrderItemJpaRepository;
 import com.eviden.demo.infrastructure.adapters.outgoing.persistence.jpa.repositories.PurchaseOrderJpaRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -29,7 +28,6 @@ public class DefaultPurchaseOrdersAdapter implements PurchaseOrderRepository {
 
     private final PurchaseOrderJpaRepository jpaRepository;
     private final ProductJpaRepository productJpaRepository;
-    private final PurchaseOrderItemJpaRepository itemJpaRepository;
 
     @Override
     @Transactional(readOnly = false)
