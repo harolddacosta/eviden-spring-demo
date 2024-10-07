@@ -29,6 +29,6 @@ RUN sed -i 's/\r$//' entrypoint.sh
 RUN ["chmod", "+x", "entrypoint.sh"]
 
 EXPOSE ${HTTP_PORT}
-HEALTHCHECK --interval=5s CMD curl -f http://localhost:$HTTP_PORT/$CONTEXT_PATH/v1/ping | jq '.status' || exit 1
+HEALTHCHECK --interval=5s CMD curl -f http://localhost:$HTTP_PORT/actuator/health | jq '.status' || exit 1
 
 ENTRYPOINT ["./entrypoint.sh"]
