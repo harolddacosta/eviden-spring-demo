@@ -44,6 +44,19 @@ Este proyecto tiene un quality gate de A
 
 ![plot](sonar.png)
 
+# Docker
+
+En la carpeta scripts, se encuentran los scripts para crear docker, pararlo o ejecutarlo.
+
+```
+#scripts> ./createDocker.sh
+#scripts> ./startDocker.sh
+
+```
+
+Nota: previo a esto, los contenedores del compose.yml, ya deben existir con docker-compose up -d
+El perfil usado dentro del docker es 'docker'
+
 ## Herramientas y dependencias clave
 
 ### 1. **Spring Boot**
