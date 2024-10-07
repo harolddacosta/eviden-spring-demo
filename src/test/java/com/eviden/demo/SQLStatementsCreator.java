@@ -42,7 +42,7 @@ public class SQLStatementsCreator {
 
         try (BufferedWriter writer =
                 new BufferedWriter(new FileWriter("/home/harold/V1_0_3__orders.sql"))) {
-            for (int index = 1; index < 50000; ++index) {
+            for (int index = 1; index < 100; ++index) {
                 List<String> sqlForPurchaseOrderList = new ArrayList<>();
                 float totalAmount = 0;
 
@@ -102,7 +102,7 @@ public class SQLStatementsCreator {
         try (BufferedWriter writer =
                 new BufferedWriter(new FileWriter("/home/harold/V1_0_2__products.sql"))) {
             Set<String> productsList = new HashSet<String>();
-            for (int i = 1; i < 100000; ++i) {
+            for (int i = 1; i < 100; ++i) {
                 productsList.add(
                         faker.book().title().replaceAll("'", "-")
                                 + " - "

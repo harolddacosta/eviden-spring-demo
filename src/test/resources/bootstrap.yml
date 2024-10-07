@@ -1,0 +1,20 @@
+embedded:
+  containers:
+    forceShutdown: true
+    enabled: true
+  postgresql:
+    enabled: true
+    docker-image: 'postgres:16-alpine'
+    wait-timeout-in-seconds: 40
+#    command: '/opt/bitnami/scripts/postgresql/run.sh'
+    startupLogCheckRegex: '.*database system is ready to accept connections.*'
+    mountVolumes:
+      -
+        hostPath: 'pgdata'  # local directory to store database files
+        containerPath: '/bitnami/postgresql'  # /var/lib/postgresql/data for https://hub.docker.com/_/postgres
+        mode: READ_WRITE  # persist data locally between container restarts
+  kafka:
+    enabled: true
+    topicsToCreate: v1.public.eviden.event-producer
+    schema-registry:
+      enabled: true

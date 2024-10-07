@@ -40,7 +40,21 @@
     <problem-spring-web.version>0.29.1</problem-spring-web.version>
     <kafka-avro-serializer.version>7.6.0</kafka-avro-serializer.version>
     <avro.version>1.11.3</avro.version>
+    <playtika-testcontainers.version>3.1.5</playtika-testcontainers.version>
+    <spring-cloud.version>2023.0.3</spring-cloud.version>
   </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-dependencies</artifactId>
+        <version>${spring-cloud.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
   <dependencies>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -88,7 +102,6 @@
       <optional>true</optional>
     </dependency>
 
-
     <!-- Kafka configuration -->
     <dependency>
       <groupId>org.springframework.kafka</groupId>
@@ -99,10 +112,10 @@
       <artifactId>kafka-avro-serializer</artifactId>
       <version>${kafka-avro-serializer.version}</version>
       <exclusions>
-      	<exclusion>
-      		<groupId>io.swagger.core.v3</groupId>
-      		<artifactId>swagger-annotations</artifactId>
-      	</exclusion>
+        <exclusion>
+          <groupId>io.swagger.core.v3</groupId>
+          <artifactId>swagger-annotations</artifactId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
@@ -138,6 +151,11 @@
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-text</artifactId>
       <version>1.10.0</version>
+    </dependency>
+    <dependency>
+      <groupId>net.datafaker</groupId>
+      <artifactId>datafaker</artifactId>
+      <version>2.4.0</version>
     </dependency>
 
     <dependency>
@@ -178,12 +196,12 @@
       <version>${jackson-databind-nullable.version}</version>
     </dependency>
 
-<!--    <dependency>-->
-<!--      <groupId>org.springframework.boot</groupId>-->
-<!--      <artifactId>spring-boot-devtools</artifactId>-->
-<!--      <scope>runtime</scope>-->
-<!--      <optional>true</optional>-->
-<!--    </dependency>-->
+    <!--    <dependency>-->
+    <!--      <groupId>org.springframework.boot</groupId>-->
+    <!--      <artifactId>spring-boot-devtools</artifactId>-->
+    <!--      <scope>runtime</scope>-->
+    <!--      <optional>true</optional>-->
+    <!--    </dependency>-->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-docker-compose</artifactId>
@@ -214,9 +232,27 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>net.datafaker</groupId>
-      <artifactId>datafaker</artifactId>
-      <version>2.4.0</version>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-bootstrap</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.playtika.testcontainers</groupId>
+      <artifactId>embedded-postgresql</artifactId>
+      <version>${playtika-testcontainers.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.playtika.testcontainers</groupId>
+      <artifactId>embedded-kafka</artifactId>
+      <version>${playtika-testcontainers.version}</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 
