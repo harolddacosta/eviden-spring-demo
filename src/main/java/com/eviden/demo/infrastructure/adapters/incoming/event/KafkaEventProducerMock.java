@@ -4,6 +4,7 @@ package com.eviden.demo.infrastructure.adapters.incoming.event;
 import com.eviden.demo.domain.avro.PurchaseOrderAvro;
 import com.eviden.demo.domain.avro.PurchaseOrderItemAvro;
 import com.eviden.demo.domain.avro.ShippingAddressAvro;
+import com.eviden.demo.domain.model.PurchaseOrderEnum;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -53,7 +54,7 @@ public class KafkaEventProducerMock {
                                                 .setUnitPrice(123)
                                                 .build()))
                         .setTotalAmount(4000)
-                        .setStatus("PROCESSING")
+                        .setStatus(PurchaseOrderEnum.PROCESSING.toString())
                         .setPurchaseOrderDate(LocalDateTime.now().toString())
                         .setPurchaseOrderId(
                                 "kafka_order_" + RandomGenerator.getDefault().nextInt(1, 30000))

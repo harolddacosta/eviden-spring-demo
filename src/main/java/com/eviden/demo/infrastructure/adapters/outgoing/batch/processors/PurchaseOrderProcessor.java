@@ -1,6 +1,7 @@
 /* EVIDEN (C)2024 */
 package com.eviden.demo.infrastructure.adapters.outgoing.batch.processors;
 
+import com.eviden.demo.domain.model.PurchaseOrderEnum;
 import com.eviden.demo.infrastructure.adapters.outgoing.persistence.jpa.entities.PurchaseOrderEntity;
 
 import org.springframework.batch.item.ItemProcessor;
@@ -10,7 +11,7 @@ public class PurchaseOrderProcessor
 
     @Override
     public PurchaseOrderEntity process(final PurchaseOrderEntity purchaseOrder) {
-        purchaseOrder.setStatus("COMPLETED");
+        purchaseOrder.setStatus(PurchaseOrderEnum.COMPLETED.toString());
 
         return purchaseOrder;
     }

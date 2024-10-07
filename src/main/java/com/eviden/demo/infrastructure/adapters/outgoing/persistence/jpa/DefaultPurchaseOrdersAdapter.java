@@ -3,6 +3,7 @@ package com.eviden.demo.infrastructure.adapters.outgoing.persistence.jpa;
 
 import com.eviden.demo.application.ports.outgoing.repositories.PurchaseOrderRepository;
 import com.eviden.demo.domain.model.PurchaseOrder;
+import com.eviden.demo.domain.model.PurchaseOrderEnum;
 import com.eviden.demo.infrastructure.adapters.outgoing.persistence.jpa.entities.PurchaseOrderEntity;
 import com.eviden.demo.infrastructure.adapters.outgoing.persistence.jpa.mappers.PurchaseOrderEntityMapper;
 import com.eviden.demo.infrastructure.adapters.outgoing.persistence.jpa.repositories.ProductJpaRepository;
@@ -62,9 +63,12 @@ public class DefaultPurchaseOrdersAdapter implements PurchaseOrderRepository {
     }
 
     @Override
+    @Transactional(readOnly = false)
     public void cancelOrder(String orderId) {
-        // TODO Auto-generated method stub
+        Optional<PurchaseOrderEntity> purchaseOrder =
+                Optional.ofNullable(jpaRepository.findByPurchaseOrderId(orderId));
 
+        purchaseOrder.ifPresent(order -> order.setStatus(PurchaseOrderEnum.CANCELLED.toString()));
     }
 
     @Override

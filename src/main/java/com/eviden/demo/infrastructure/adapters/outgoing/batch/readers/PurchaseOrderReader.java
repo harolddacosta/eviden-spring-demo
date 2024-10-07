@@ -1,6 +1,7 @@
 /* EVIDEN (C)2024 */
 package com.eviden.demo.infrastructure.adapters.outgoing.batch.readers;
 
+import com.eviden.demo.domain.model.PurchaseOrderEnum;
 import com.eviden.demo.infrastructure.adapters.outgoing.persistence.jpa.entities.PurchaseOrderEntity;
 import com.eviden.demo.infrastructure.adapters.outgoing.persistence.jpa.repositories.PurchaseOrderJpaRepository;
 
@@ -26,7 +27,9 @@ public class PurchaseOrderReader implements ItemReader<PurchaseOrderEntity> {
             throws Exception, UnexpectedInputException, ParseException,
                     NonTransientResourceException {
         if (list.isEmpty()) {
-            list = purchaseOrderJpaRepository.findFirst10ByStatusOrderById("PENDING");
+            list =
+                    purchaseOrderJpaRepository.findFirst10ByStatusOrderById(
+                            PurchaseOrderEnum.PENDING.toString());
         }
 
         if (readHeaderIndex > 9) {

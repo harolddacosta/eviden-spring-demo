@@ -1,6 +1,8 @@
 /* EVIDEN (C)2024 */
 package com.eviden.demo;
 
+import com.eviden.demo.domain.model.PurchaseOrderEnum;
+
 import net.datafaker.Faker;
 import net.datafaker.providers.base.Options;
 
@@ -28,17 +30,7 @@ public class SQLStatementsCreator {
     }
 
     private static void createOrders(int quantityOfProductsCreated) throws IOException {
-        enum OrderStatus {
-            COMPLETED,
-            PROCESSING,
-            PENDING,
-            CANCELLED
-        }
-
         final Options opt = faker.options();
-
-        // INSERT INTO public.purchase_order_item ("version", quantity, unit_price,
-        // product_id, purchase_order_id) VALUES('', '', '', '', 0, 0, 0, 0, 0);
 
         try (BufferedWriter writer =
                 new BufferedWriter(new FileWriter("/home/harold/V1_0_3__orders.sql"))) {
@@ -82,7 +74,7 @@ public class SQLStatementsCreator {
                                                         .toInstant(ZoneOffset.UTC)),
                                 index,
                                 faker2.address().state().replaceAll("'", "-"),
-                                opt.option(OrderStatus.class),
+                                opt.option(PurchaseOrderEnum.class),
                                 faker2.address().streetName().replaceAll("'", "-"),
                                 totalAmount,
                                 faker.address().zipCode());
