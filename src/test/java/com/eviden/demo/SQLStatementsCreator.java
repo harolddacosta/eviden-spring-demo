@@ -41,7 +41,6 @@ public class SQLStatementsCreator {
                 for (int indexForItem = 1;
                         indexForItem <= RandomGenerator.getDefault().nextInt(1, 10);
                         ++indexForItem) {
-                    // int index = i.getAndIncrement();
                     int quantity = RandomGenerator.getDefault().nextInt(1, 10);
                     float itemPrice = RandomGenerator.getDefault().nextFloat(1, 1000);
                     String sqlForPurchaseOrderItem =
@@ -114,7 +113,6 @@ public class SQLStatementsCreator {
                                     writer.newLine();
                                     writer.write(sql);
                                 } catch (IOException e) {
-                                    // TODO Auto-generated catch block
                                     e.printStackTrace();
                                 }
                             });

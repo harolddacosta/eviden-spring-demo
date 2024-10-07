@@ -56,7 +56,7 @@ public class DefaultPurchaseOrdersAdapter implements PurchaseOrderRepository {
         Page<PurchaseOrderEntity> paginatedItems =
                 jpaRepository.findAll(pageRequest.withSort(Sort.by("purchaseOrderId").ascending()));
 
-        return new PageImpl<PurchaseOrder>(
+        return new PageImpl<>(
                 PurchaseOrderEntityMapper.INSTANCE.fromEntities(paginatedItems.getContent()),
                 pageRequest,
                 paginatedItems.getTotalElements());

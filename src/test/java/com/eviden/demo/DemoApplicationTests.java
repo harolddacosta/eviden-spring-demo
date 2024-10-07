@@ -10,5 +10,7 @@ import org.springframework.test.context.ActiveProfiles;
 class DemoApplicationTests {
 
     @Test
-    void contextLoads() {}
+    void contextLoads() {
+        // To test booting the app
+    }
 }

@@ -38,6 +38,12 @@ O hacer querys a purchaseOrderId empezando con 'kafka'
 
 ''select * from purchase_order po where po.purchase_order_id like 'kafka%';''
 
+# Sonar
+
+Este proyecto tiene un quality gate de A
+
+![plot](.sonar.png)
+
 ## Herramientas y dependencias clave
 
 ### 1. **Spring Boot**

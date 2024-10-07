@@ -11,10 +11,6 @@ import lombok.extern.slf4j.Slf4j;
 
 import net.datafaker.Faker;
 
-import org.springframework.batch.core.JobParametersInvalidException;
-import org.springframework.batch.core.repository.JobExecutionAlreadyRunningException;
-import org.springframework.batch.core.repository.JobInstanceAlreadyCompleteException;
-import org.springframework.batch.core.repository.JobRestartException;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -33,9 +29,7 @@ public class KafkaEventProducerMock {
     Faker faker = new Faker();
 
     @Scheduled(cron = "0/20 * * * * *")
-    public void runKafkaEventProducer()
-            throws JobParametersInvalidException, JobExecutionAlreadyRunningException,
-                    JobRestartException, JobInstanceAlreadyCompleteException {
+    public void runKafkaEventProducer() {
         kafkaEventTemplate.send(
                 "v1.public.eviden.event-producer",
                 PurchaseOrderAvro.newBuilder()

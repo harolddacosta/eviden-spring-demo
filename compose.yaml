@@ -9,7 +9,7 @@ services:
         - database.env # configure postgres
       volumes:
         - 'postgres-eviden:/var/lib/postgresql/data'
-      image: 'postgres'
+      image: 'postgres:16'
       networks:
         - default
     zookeeper:

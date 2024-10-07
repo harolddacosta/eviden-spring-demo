@@ -82,39 +82,35 @@ class PurchaseOrdersControllerTest {
     }
 
     private PurchaseOrder createObject() {
-        PurchaseOrder requestBody =
-                PurchaseOrder.builder()
-                        .items(
-                                List.of(
-                                        PurchaseOrderItem.builder()
-                                                .productId(
-                                                        "test_pr_"
-                                                                + RandomGenerator.getDefault()
-                                                                        .nextInt(1, 30000))
-                                                .productName(
-                                                        faker.book().title()
-                                                                + " - "
-                                                                + faker.book().author()
-                                                                + " - test")
-                                                .quantity(2)
-                                                .unitPrice((double) 123)
-                                                .build()))
-                        .totalAmount((double) 4000)
-                        .status("PROCESSING")
-                        .purchaseOrderDate(LocalDateTime.now().atOffset(ZoneOffset.UTC))
-                        .purchaseOrderId(
-                                "test_order_" + RandomGenerator.getDefault().nextInt(1, 30000))
-                        .customerId(
-                                "test_customer_" + RandomGenerator.getDefault().nextInt(1, 30000))
-                        .shippingAddress(
-                                ShippingAddress.builder()
-                                        .city("Caracas")
-                                        .country("Venezuela")
-                                        .state("Miranda")
-                                        .street("Los Teques")
-                                        .zipCode("008940")
-                                        .build())
-                        .build();
-        return requestBody;
+        return PurchaseOrder.builder()
+                .items(
+                        List.of(
+                                PurchaseOrderItem.builder()
+                                        .productId(
+                                                "test_pr_"
+                                                        + RandomGenerator.getDefault()
+                                                                .nextInt(1, 30000))
+                                        .productName(
+                                                faker.book().title()
+                                                        + " - "
+                                                        + faker.book().author()
+                                                        + " - test")
+                                        .quantity(2)
+                                        .unitPrice((double) 123)
+                                        .build()))
+                .totalAmount((double) 4000)
+                .status("PROCESSING")
+                .purchaseOrderDate(LocalDateTime.now().atOffset(ZoneOffset.UTC))
+                .purchaseOrderId("test_order_" + RandomGenerator.getDefault().nextInt(1, 30000))
+                .customerId("test_customer_" + RandomGenerator.getDefault().nextInt(1, 30000))
+                .shippingAddress(
+                        ShippingAddress.builder()
+                                .city("Caracas")
+                                .country("Venezuela")
+                                .state("Miranda")
+                                .street("Los Teques")
+                                .zipCode("008940")
+                                .build())
+                .build();
     }
 }
