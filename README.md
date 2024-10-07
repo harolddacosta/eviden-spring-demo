@@ -42,7 +42,7 @@ O hacer querys a purchaseOrderId empezando con 'kafka'
 
 Este proyecto tiene un quality gate de A
 
-![plot](.sonar.png)
+![plot](sonar.png)
 
 ## Herramientas y dependencias clave
 
