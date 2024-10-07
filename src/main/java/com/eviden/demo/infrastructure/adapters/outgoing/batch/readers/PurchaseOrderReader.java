@@ -33,6 +33,10 @@ public class PurchaseOrderReader implements ItemReader<PurchaseOrderEntity> {
             return null;
         }
 
-        return list.get(readHeaderIndex++);
+        try {
+            return list.get(readHeaderIndex++);
+        } catch (IndexOutOfBoundsException e) {
+            return null;
+        }
     }
 }

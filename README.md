@@ -22,6 +22,29 @@ Se puede luego visualizar el swagger en la direccion
 
 [Link]http://localhost:9090/swagger-ui/index.html
 
+## Funcionamiento
+
+# Batch
+
+El proceso de batch se ejecuta con cron __@Scheduled(cron = "0/20 * * * * *")__ cada 20 segundos se puede ver que se escogen los primeros 10 registros
+en status "PENDING" y se pasan a status "COMPLETE"
+
+Se puede chequear el cambio haciendo una query y viendo como van reduciendo
+
+''select count(*) from purchase_order po where po.status = 'PENDING';''
+
+# Event
+
+En la consola se puede chequear como se recibe un evento del tipo __@Scheduled(cron = "0/20 * * * * *")__ cada 20 segundos:
+
+```
+Receiving event topic:{"purchaseOrderId": "kafka_order_14518", "customerId": "kafka_customer_21077",.................
+```
+
+O hacer querys a purchaseOrderId empezando con 'kafka'
+
+''select * from purchase_order po where po.purchase_order_id like 'kafka%';''
+
 ## Herramientas y dependencias clave
 
 ### 1. **Spring Boot**
@@ -75,6 +98,9 @@ La presencia de `spring-kafka`, `kafka-avro-serializer` y `avro` indica que el p
 ### 15. **JUnit y Testing**
 - `spring-boot-starter-test`, `spring-batch-test`: Dependencias para pruebas unitarias e integrales utilizando **JUnit**.
 - `datafaker`: Generador de datos falsos para pruebas.
+
+### 16. **Test containers**
+- `com.playtika.testcontainers`: Para realizar pruebas de integracion con los componentes reales, esto permite unas pruebas más ajustadas al mundo real.
 
 ## Repositorios
 
