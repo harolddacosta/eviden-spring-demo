@@ -5,13 +5,11 @@ services:
       container_name: postgres-api-dbs
       ports:
         - '5433:5432'
-      environment:
-        - POSTGRES_USER=dev01
-        - POSTGRES_PASSWORD=dev01
-        - PGDATA=/var/lib/postgresql/data/pgdata
+      env_file:
+        - database.env # configure postgres
       volumes:
-        - 'postgres-api-dbs:/var/lib/postgresql/data'
-      image: 'postgres:13.5'
+        - 'postgres-eviden:/var/lib/postgresql/data'
+      image: 'postgres'
       networks:
         - default
     zookeeper:
@@ -66,7 +64,7 @@ services:
         KAFKA_CLUSTERS_0_SCHEMAREGISTRY: http://schema-registry:8081
         DYNAMIC_CONFIG_ENABLED: 'true'
 volumes:
-    postgres-api-dbs:
+    postgres-eviden:
 networks:
     default:
       driver: bridge
