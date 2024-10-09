@@ -196,6 +196,7 @@ components:
           type: string
           description: ID del pedido
           example: "ORD-001"
+          x-field-extra-annotation: "@jakarta.validation.constraints.NotBlank"
         customerId:
           type: string
           description: ID del cliente que realizó el pedido
@@ -221,6 +222,9 @@ components:
           example: 1329.97
         shippingAddress:
           $ref: '#/components/schemas/ShippingAddressPostRequest'
+      required:
+        - purchaseOrderId
+        - customerId
   
     PurchaseOrderItemPostRequest:
       type: object
